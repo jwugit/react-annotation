@@ -42,7 +42,6 @@ export default class Connector extends React.Component {
       ))
     }
 
-    console.log("annotation-connector rendered", this.props)
     return (
       <g className="annotation-connector" {...this.props.gAttrs}>
 

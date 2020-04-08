@@ -362,31 +362,43 @@ export default class Note extends React.Component {
         className="annotation-note"
         {...this.props.gProps}
       >
-        <g
-          className="annotation-note-content"
-          transform={`translate(${this.state.translateX},
-          ${this.state.translateY})`}
-          ref={el => (this.note = el)}
-        >
-          <rect
-            className="annotation-note-bg"
-            width={
-              this.state.bbox.width + bgPaddingFinal.left + bgPaddingFinal.right
-            }
-            x={-bgPaddingFinal.left}
-            y={-bgPaddingFinal.top}
-            height={
-              this.state.bbox.height +
-              bgPaddingFinal.top +
-              bgPaddingFinal.bottom
-            }
-            stroke="none"
-            fill="white"
-            fillOpacity="0"
-          />
-          {noteTitle}
-          {noteText}
-        </g>
+        <Spring
+          key={`noteComponent_text_${x}_${y}`}
+          delay={1450}
+          from={{ opacity: 0 }}
+          to={{ opacity: 1 }}>
+          {props => {
+            return(
+              <g
+                className="annotation-note-content"
+                transform={`translate(${this.state.translateX}, ${this.state.translateY})`}
+                ref={el => (this.note = el)}
+                style={{opacity: props.opacity}}
+              >
+                <rect
+                  className="annotation-note-bg"
+                  width={
+                    this.state.bbox.width + bgPaddingFinal.left + bgPaddingFinal.right
+                  }
+                  x={-bgPaddingFinal.left}
+                  y={-bgPaddingFinal.top}
+                  height={
+                    this.state.bbox.height +
+                    bgPaddingFinal.top +
+                    bgPaddingFinal.bottom
+                  }
+                  stroke="none"
+                  fill="white"
+                  fillOpacity="0"
+                />
+                {noteTitle}
+                {noteText}
+              </g>
+            )
+          }}
+        </Spring>
+
+
         {noteLineType}
         {handle}
       </g>
