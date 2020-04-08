@@ -1,6 +1,4 @@
 import React from "react";
-import injectTapEventPlugin from "react-tap-event-plugin";
-injectTapEventPlugin();
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 import { muiTheme } from "./theme";
@@ -49,7 +47,7 @@ class Docs extends React.Component {
       return (
         <MenuItem
           key={d.id}
-          onTouchTap={() => {
+          onClick={() => {
             this.setState({ open: false });
             window.location = `#${d.id}`;
           }}

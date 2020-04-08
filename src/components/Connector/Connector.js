@@ -1,11 +1,12 @@
 import React from "react"
 import Handle from "../Handle"
+import {Spring} from 'react-spring/renderprops.cjs'
 
 export default class Connector extends React.Component {
   getComponents() {}
 
   render() {
-    const { color, dx, dy, customID, editMode } = this.props
+    const { x, y, color, dx, dy, customID, editMode, easing } = this.props
 
     if (dx === 0 && dy === 0) {
       return <g className="annotation-connector" />
@@ -41,8 +42,10 @@ export default class Connector extends React.Component {
       ))
     }
 
+    console.log("annotation-connector rendered", this.props)
     return (
       <g className="annotation-connector" {...this.props.gAttrs}>
+
         {d.components &&
           d.components.map((c, i) => {
             const attrs = {}
@@ -53,18 +56,51 @@ export default class Connector extends React.Component {
                   c.attrs[k]
               }
             })
-            return (
-              <c.type
-                mask={customID ? `url(#${customID})` : undefined}
-                key={i}
-                className={c.className}
-                fill="none"
-                stroke={color}
-                {...attrs}
-              >
-                {c.attrs.text}
-              </c.type>
-            )
+
+            if(c.type === 'path') {
+              // console.log("c.type", c.type, c)
+              const p = document.createElementNS("http://www.w3.org/2000/svg", "path")
+              p.setAttribute("d", c.attrs.d)
+              const plength =  Math.ceil(p.getTotalLength())
+
+              return (<Spring
+                key={`${i}_${plength}_${x}_${y}`}
+                config={{
+                  duration: 500,
+                  easing: easing
+                }}
+                delay={700}
+                from={{ ll: plength }}
+                to={{ ll: 0 }}>
+                {props => {
+                  return(
+                    <c.type
+                      mask={customID ? `url(#${customID})` : undefined}
+                      className={c.className}
+                      fill="none"
+                      stroke={color}
+                      {...attrs}
+                      strokeDasharray={plength}
+                      strokeDashoffset={Math.round(props.ll)}
+                    >
+                      {c.attrs.text}
+                    </c.type>
+                  )
+                }}
+              </Spring>)
+            } else {
+              return(
+                <c.type
+                  mask={customID ? `url(#${customID})` : undefined}
+                  className={c.className}
+                  fill="none"
+                  stroke={color}
+                  {...attrs}
+                >
+                  {c.attrs.text}
+                </c.type>
+              )
+            }
           })}
         {childrenWithProps}
         {handles}

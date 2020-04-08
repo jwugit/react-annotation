@@ -56,7 +56,7 @@ const types = {
     summaryCont: "radiusPadding",
     subject: {
       radius: 50,
-      radiusPadding: 5
+      radiusPadding: 0
     },
     img: "a-circle.png"
   },
@@ -148,7 +148,7 @@ const typesOrder = [
 
 export default class Types extends React.Component {
   state = {
-    name: "AnnotationLabel",
+    name: "AnnotationCalloutCircle",
     description: types.AnnotationLabel.summary,
     editMode: true,
     connector: {},
@@ -315,7 +315,7 @@ export default class Types extends React.Component {
       bracketType = (
         <div style={{ position: "absolute", top: 20, right: 30 }}>
           <FloatingActionButton
-            onTouchTap={this.updateSubject.bind(this, "type", "square")}
+            onClick={this.updateSubject.bind(this, "type", "square")}
             mini={true}
             secondary={this.state.subject.type === "curly" ? true : false}
             iconStyle={{
@@ -327,7 +327,7 @@ export default class Types extends React.Component {
             {"]"}
           </FloatingActionButton>
           <FloatingActionButton
-            onTouchTap={this.updateSubject.bind(this, "type", "curly")}
+            onClick={this.updateSubject.bind(this, "type", "curly")}
             mini={true}
             secondary={this.state.subject.type !== "curly" ? true : false}
             iconStyle={{

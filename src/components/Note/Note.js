@@ -4,6 +4,7 @@ import Handle from "../Handle"
 import noteVertical from "viz-annotation/lib/Note/lineType-vertical"
 import noteHorizontal from "viz-annotation/lib/Note/lineType-horizontal"
 import PropTypes from "prop-types"
+import { Spring } from "react-spring/renderprops.cjs"
 
 const getOuterBBox = (...domNodes) => {
   return [...domNodes].reduce(
@@ -231,6 +232,8 @@ export default class Note extends React.Component {
 
   render() {
     const {
+      x,
+      y,
       dx,
       dy,
       title,
@@ -306,13 +309,39 @@ export default class Note extends React.Component {
         (lineType === "horizontal" && noteHorizontal(noteParams))
       ).components[0]
 
-      noteLineType = (
-        <noteComponent.type
-          className={noteComponent.className}
-          {...noteComponent.attrs}
-          stroke={color}
-        />
-      )
+      if(noteComponent.type === 'path') {
+        const p = document.createElementNS("http://www.w3.org/2000/svg", "path")
+        p.setAttribute("d", noteComponent.attrs.d)
+        const plength =  Math.ceil(p.getTotalLength())
+        noteLineType = (<Spring
+          key={`noteComponent_${plength}_${x}_${y}`}
+          config={{
+            duration: 250
+          }}
+          delay={1200}
+          from={{ ll: plength }}
+          to={{ ll: 0 }}>
+          {props => {
+            return(
+              <noteComponent.type
+                className={noteComponent.className}
+                {...noteComponent.attrs}
+                stroke={color}
+                strokeDasharray={plength}
+                strokeDashoffset={Math.round(props.ll)}
+              />
+            )
+          }}
+        </Spring>)
+      } else {
+        noteLineType = (
+          <noteComponent.type
+            className={noteComponent.className}
+            {...noteComponent.attrs}
+            stroke={color}
+          />
+        )
+      }
     }
 
     let handle

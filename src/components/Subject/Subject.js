@@ -1,5 +1,6 @@
 import React from "react"
 import Handle from "../Handle"
+import {Spring} from 'react-spring/renderprops.cjs'
 
 const FILLABLE = ["SubjectCircle", "SubjectRect"]
 
@@ -7,7 +8,7 @@ export default class Subject extends React.Component {
   getComponents() {}
 
   render() {
-    const { editMode, color, fill = "none", fillOpacity = 1 } = this.props
+    const { x, y, editMode, color, fill = "none", fillOpacity = 1, easing } = this.props
 
     const d = this.getComponents(this.props) || {}
 
@@ -61,18 +62,53 @@ export default class Subject extends React.Component {
                   c.attrs[k]
               }
             })
-            return (
-              <c.type
-                key={i}
-                className={c.className}
-                fill={(honorFill && fill) || "none"}
-                fillOpacity={honorFill && fillOpacity}
-                stroke={color}
-                {...attrs}
-              >
-                {c.attrs.text}
-              </c.type>
-            )
+
+            if(c.type === 'path') {
+              const p = document.createElementNS("http://www.w3.org/2000/svg", "path")
+              p.setAttribute("d", c.attrs.d)
+              const plength =  Math.ceil(p.getTotalLength())
+              // console.log("plength", plength)
+
+              return (<Spring
+                key={`${i}_${plength}_${x}_${y}`}
+                config={{
+                  duration: 500,
+                  easing: easing
+                }}
+                delay={500}
+                from={{ ll: plength }}
+                to={{ ll: 0 }}>
+                {props => {
+                  return(
+                    <c.type
+                      key={i}
+                      className={c.className}
+                      fill={(honorFill && fill) || "none"}
+                      fillOpacity={honorFill && fillOpacity}
+                      stroke={color}
+                      strokeDasharray={plength}
+                      strokeDashoffset={Math.round(props.ll)}
+                      {...attrs}
+                    >
+                      {c.attrs.text}
+                    </c.type>
+                  )
+                }}
+              </Spring>)
+            } else {
+              return (
+                <c.type
+                  key={i}
+                  className={c.className}
+                  fill={(honorFill && fill) || "none"}
+                  fillOpacity={honorFill && fillOpacity}
+                  stroke={color}
+                  {...attrs}
+                >
+                  {c.attrs.text}
+                </c.type>
+              )
+            }
           })}
         {handles}
       </g>
