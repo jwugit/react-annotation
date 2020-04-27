@@ -327,7 +327,7 @@ export default class Note extends React.Component {
               <noteComponent.type
                 className={noteComponent.className}
                 {...noteComponent.attrs}
-                stroke-width={strokeWidth}
+                strokeWidth={strokeWidth}
                 stroke={color}
                 strokeDasharray={plength}
                 strokeDashoffset={Math.round(props.ll)}
@@ -340,7 +340,7 @@ export default class Note extends React.Component {
           <noteComponent.type
             className={noteComponent.className}
             {...noteComponent.attrs}
-            stroke-width={strokeWidth}
+            strokeWidth={strokeWidth}
             stroke={color}
           />
         )

@@ -85,7 +85,7 @@ export default class Subject extends React.Component {
                       className={c.className}
                       fill={(honorFill && fill) || "none"}
                       fillOpacity={honorFill && fillOpacity}
-                      stroke-width={strokeWidth}
+                      strokeWidth={strokeWidth}
                       stroke={color}
                       strokeDasharray={plength}
                       strokeDashoffset={Math.round(props.ll)}
@@ -103,7 +103,7 @@ export default class Subject extends React.Component {
                   className={c.className}
                   fill={(honorFill && fill) || "none"}
                   fillOpacity={honorFill && fillOpacity}
-                  stroke-width={strokeWidth}
+                  strokeWidth={strokeWidth}
                   stroke={color}
                   {...attrs}
                 >

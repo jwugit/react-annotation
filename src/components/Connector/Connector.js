@@ -77,7 +77,7 @@ export default class Connector extends React.Component {
                       mask={customID ? `url(#${customID})` : undefined}
                       className={c.className}
                       fill="none"
-                      stroke-width={strokeWidth}
+                      strokeWidth={strokeWidth}
                       stroke={color}
                       {...attrs}
                       strokeDasharray={plength}
@@ -94,7 +94,7 @@ export default class Connector extends React.Component {
                   mask={customID ? `url(#${customID})` : undefined}
                   className={c.className}
                   fill="none"
-                  stroke-width={strokeWidth}
+                  strokeWidth={strokeWidth}
                   stroke={color}
                   {...attrs}
                 >
