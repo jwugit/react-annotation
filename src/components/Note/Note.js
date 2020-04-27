@@ -244,7 +244,8 @@ export default class Note extends React.Component {
       color,
       titleColor,
       labelColor,
-      bgPadding
+      bgPadding,
+      strokeWidth = 2
     } = this.props
 
     let bgPaddingFinal = { top: 0, bottom: 0, left: 0, right: 0 }
@@ -326,6 +327,7 @@ export default class Note extends React.Component {
               <noteComponent.type
                 className={noteComponent.className}
                 {...noteComponent.attrs}
+                stroke-width={strokeWidth}
                 stroke={color}
                 strokeDasharray={plength}
                 strokeDashoffset={Math.round(props.ll)}
@@ -338,6 +340,7 @@ export default class Note extends React.Component {
           <noteComponent.type
             className={noteComponent.className}
             {...noteComponent.attrs}
+            stroke-width={strokeWidth}
             stroke={color}
           />
         )

@@ -8,7 +8,7 @@ export default class Subject extends React.Component {
   getComponents() {}
 
   render() {
-    const { x, y, editMode, color, fill = "none", fillOpacity = 1, easing } = this.props
+    const { x, y, editMode, color, fill = "none", fillOpacity = 1, easing, strokeWidth = 2 } = this.props
 
     const d = this.getComponents(this.props) || {}
 
@@ -85,6 +85,7 @@ export default class Subject extends React.Component {
                       className={c.className}
                       fill={(honorFill && fill) || "none"}
                       fillOpacity={honorFill && fillOpacity}
+                      stroke-width={strokeWidth}
                       stroke={color}
                       strokeDasharray={plength}
                       strokeDashoffset={Math.round(props.ll)}
@@ -102,6 +103,7 @@ export default class Subject extends React.Component {
                   className={c.className}
                   fill={(honorFill && fill) || "none"}
                   fillOpacity={honorFill && fillOpacity}
+                  stroke-width={strokeWidth}
                   stroke={color}
                   {...attrs}
                 >

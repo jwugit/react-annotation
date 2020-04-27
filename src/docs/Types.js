@@ -533,6 +533,7 @@ export default class Types extends React.Component {
               className={t.typeSettings.className}
               color={theme.accent}
               note={note}
+              strokeWidth={2}
             />
             <text x="30" y="415" className="summary">
               Code below is ready to use with these setttings

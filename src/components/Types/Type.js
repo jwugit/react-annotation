@@ -38,7 +38,8 @@ export default function(
     onDragStart,
     onDragEnd,
     editMode,
-    events
+    events,
+    strokeWidth
   } = props
   const CONNECTORS = {
     type: {
@@ -77,6 +78,7 @@ export default function(
       {...SubjectDefaultProps}
       {...subject}
       events={events}
+      strokeWidth={strokeWidth}
     >
       {ConnectorType && (
         <ConnectorType {...connector}>
