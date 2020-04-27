@@ -103,6 +103,9 @@ export default class Note extends React.Component {
         if (lineType === "vertical") noteParams.orientation = "leftRight"
         else if (lineType === "horizontal") noteParams.orientation = "topBottom"
 
+        if (lineType === "verticalNone") noteParams.orientation = "leftRight"
+        else if (lineType === "horizontalNone") noteParams.orientation = "topBottom"
+
         const { x, y } = alignment(noteParams)
 
         this.setState({
@@ -191,6 +194,9 @@ export default class Note extends React.Component {
       if (lineType === "vertical") noteParams.orientation = "leftRight"
       else if (lineType === "horizontal") noteParams.orientation = "topBottom"
 
+      if (lineType === "verticalNone") noteParams.orientation = "leftRight"
+      else if (lineType === "horizontalNone") noteParams.orientation = "topBottom"
+
       const { x, y } = alignment(noteParams)
       const updates = { bbox }
       if (this.state.translateX !== x) updates.translateX = x
@@ -216,6 +222,9 @@ export default class Note extends React.Component {
 
       if (lineType === "vertical") noteParams.orientation = "leftRight"
       else if (lineType === "horizontal") noteParams.orientation = "topBottom"
+
+      if (lineType === "verticalNone") noteParams.orientation = "leftRight"
+      else if (lineType === "horizontalNone") noteParams.orientation = "topBottom"
 
       const { x, y } = alignment(noteParams)
       const updates = {}
@@ -307,7 +316,9 @@ export default class Note extends React.Component {
 
       const noteComponent = (
         (lineType === "vertical" && noteVertical(noteParams)) ||
-        (lineType === "horizontal" && noteHorizontal(noteParams))
+        (lineType === "horizontal" && noteHorizontal(noteParams)) ||
+        (lineType === "verticalNone" && noteVertical(noteParams)) ||
+        (lineType === "horizontalNone" && noteHorizontal(noteParams))
       ).components[0]
 
       if(noteComponent.type === 'path') {
@@ -402,7 +413,7 @@ export default class Note extends React.Component {
         </Spring>
 
 
-        {noteLineType}
+        {!["verticalNone", "horizontalNone"].includes(lineType) && noteLineType}
         {handle}
       </g>
     )
