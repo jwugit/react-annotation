@@ -91,7 +91,7 @@ export default function(
         (React.isValidElement(note) || typeof note === "function" ? (
           <JSXNote noteDefaultProps={NoteDefaultProps} note={note} />
         ) : (
-          <NoteType {...NoteDefaultProps} {...note} />
+          <NoteType {...NoteDefaultProps} {...note} strokeWidth={strokeWidth} />
         ))}
     </AnnotationType>
   )

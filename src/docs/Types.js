@@ -213,7 +213,8 @@ export default class Types extends React.Component {
       {},
       {
         title: "Annotations :)",
-        label: "Longer text to show text wrapping"
+        label: "Longer text to show text wrapping",
+        titleSize: 30
       },
       t.typeSettings.note,
       this.state.note
@@ -428,6 +429,16 @@ export default class Types extends React.Component {
                 }`}
                 src={`img/${alignSecond}.png`}
                 onClick={this.updateNote.bind(this, "align", alignSecond)}
+              />
+              <img
+                className={`tiny-icon`}
+                src={`img/mm.png`}
+                onClick={this.updateNote.bind(this, "titleSize", 15)}
+              />
+              <img
+                className={`tiny-icon`}
+                src={`img/mm.png`}
+                onClick={this.updateNote.bind(this, "titleSize", 30)}
               />
             </div>
             <div className="col-xs-3">
