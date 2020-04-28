@@ -254,7 +254,8 @@ export default class Note extends React.Component {
       titleColor,
       labelColor,
       bgPadding,
-      strokeWidth = 2
+      strokeWidth = 2,
+      titleSize = "inherit"
     } = this.props
 
     let bgPaddingFinal = { top: 0, bottom: 0, left: 0, right: 0 }
@@ -279,6 +280,7 @@ export default class Note extends React.Component {
           fontWeight="bold"
           key="title"
           fill={titleColor || color}
+          fontSize={titleSize}
         >
           {this.state.titleWrapped || (
             <tspan x={0} dy=".8em">
@@ -297,6 +299,7 @@ export default class Note extends React.Component {
           y={this.state.labelOffset * 1.1}
           key="label"
           fill={labelColor || color}
+          fontSize={titleSize}
         >
           {this.state.labelWrapped || (
             <tspan x={0} dy=".8em">
@@ -424,7 +427,9 @@ Note.defaultProps = {
   wrap: 120,
   align: "dynamic",
   orientation: "topBottom",
-  padding: 3
+  padding: 3,
+  strokeWidth: 2,
+  titleSize: "inherit"
 }
 
 Note.propTypes = {
@@ -447,5 +452,7 @@ Note.propTypes = {
   lineType: PropTypes.oneOf(["vertical", "horizontal"]),
   color: PropTypes.string,
   titleColor: PropTypes.string,
-  labelColor: PropTypes.string
+  labelColor: PropTypes.string,
+  strokeWidth: PropTypes.number,
+  titleSize: PropTypes.string
 }
