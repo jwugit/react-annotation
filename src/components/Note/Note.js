@@ -49,6 +49,7 @@ export default class Note extends React.Component {
   }
   componentWillReceiveProps(nextProps) {
     if (
+      nextProps.titleSize !== this.props.titleSize ||
       nextProps.title !== this.props.title ||
       nextProps.label !== this.props.label ||
       nextProps.wrap !== this.props.wrap
@@ -380,7 +381,7 @@ export default class Note extends React.Component {
         {...this.props.gProps}
       >
         <Spring
-          key={`noteComponent_text_${x}_${y}_${titleSize}`}
+          key={`noteComponent_text_${x}_${y}`}
           delay={1450}
           from={{ opacity: 0 }}
           to={{ opacity: 1 }}>
