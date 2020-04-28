@@ -380,7 +380,7 @@ export default class Note extends React.Component {
         {...this.props.gProps}
       >
         <Spring
-          key={`noteComponent_text_${x}_${y}`}
+          key={`noteComponent_text_${x}_${y}_${titleSize}`}
           delay={1450}
           from={{ opacity: 0 }}
           to={{ opacity: 1 }}>
