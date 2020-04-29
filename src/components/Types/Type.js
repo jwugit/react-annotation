@@ -39,7 +39,8 @@ export default function(
     onDragEnd,
     editMode,
     events,
-    strokeWidth
+    strokeWidth,
+    delay
   } = props
   const CONNECTORS = {
     type: {
@@ -60,6 +61,7 @@ export default function(
   }
 
   const AnnotationType = getAnnotationType(props.editMode)
+  const delayK = delay ? delay : 0
 
   return (
     <AnnotationType
@@ -79,6 +81,7 @@ export default function(
       {...subject}
       events={events}
       strokeWidth={strokeWidth}
+      delay={delayK}
     >
       {ConnectorType && (
         <ConnectorType {...connector}>
@@ -91,7 +94,7 @@ export default function(
         (React.isValidElement(note) || typeof note === "function" ? (
           <JSXNote noteDefaultProps={NoteDefaultProps} note={note} />
         ) : (
-          <NoteType {...NoteDefaultProps} {...note} strokeWidth={strokeWidth} />
+          <NoteType {...NoteDefaultProps} strokeWidth={strokeWidth} delay={delayK} {...note} />
         ))}
     </AnnotationType>
   )

@@ -214,7 +214,7 @@ export default class Types extends React.Component {
       {
         title: "Annotations :)",
         label: "Longer text to show text wrapping",
-        titleSize: 30
+        titleSize: 15
       },
       t.typeSettings.note,
       this.state.note
@@ -545,6 +545,21 @@ export default class Types extends React.Component {
               color={theme.accent}
               note={note}
               strokeWidth={2}
+              delay={0}
+            />
+            <Annotation
+              x={300}
+              y={120}
+              dy={name === "AnnotationBracket" ? undefined : 117}
+              dx={name === "AnnotationBracket" ? undefined : 162}
+              editMode={this.state.editMode}
+              subject={subjectJoined}
+              connector={connector}
+              className={t.typeSettings.className}
+              color={theme.accent}
+              note={note}
+              strokeWidth={2}
+              delay={250}
             />
             <text x="30" y="415" className="summary">
               Code below is ready to use with these setttings

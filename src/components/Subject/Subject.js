@@ -8,7 +8,7 @@ export default class Subject extends React.Component {
   getComponents() {}
 
   render() {
-    const { x, y, editMode, color, fill = "none", fillOpacity = 1, easing, strokeWidth = 2 } = this.props
+    const { x, y, editMode, color, fill = "none", fillOpacity = 1, easing, strokeWidth = 2, delay } = this.props
 
     const d = this.getComponents(this.props) || {}
 
@@ -75,7 +75,7 @@ export default class Subject extends React.Component {
                   duration: 500,
                   easing: easing
                 }}
-                delay={500}
+                delay={delay + 500}
                 from={{ ll: plength }}
                 to={{ ll: 0 }}>
                 {props => {

@@ -256,8 +256,11 @@ export default class Note extends React.Component {
       labelColor,
       bgPadding,
       strokeWidth = 2,
-      titleSize = "inherit"
+      titleSize = "inherit",
+      delay
     } = this.props
+
+    console.log("props", this.props)
 
     let bgPaddingFinal = { top: 0, bottom: 0, left: 0, right: 0 }
 
@@ -334,7 +337,7 @@ export default class Note extends React.Component {
           config={{
             duration: 250
           }}
-          delay={1200}
+          delay={delay + 1200}
           from={{ ll: plength }}
           to={{ ll: 0 }}>
           {props => {
@@ -382,7 +385,7 @@ export default class Note extends React.Component {
       >
         <Spring
           key={`noteComponent_text_${x}_${y}`}
-          delay={1450}
+          delay={delay + 1450}
           from={{ opacity: 0 }}
           to={{ opacity: 1 }}>
           {props => {

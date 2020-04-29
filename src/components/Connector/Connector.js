@@ -6,7 +6,7 @@ export default class Connector extends React.Component {
   getComponents() {}
 
   render() {
-    const { x, y, color, dx, dy, customID, editMode, easing, strokeWidth = 2 } = this.props
+    const { x, y, color, dx, dy, customID, editMode, easing, strokeWidth = 2, delay } = this.props
 
     if (dx === 0 && dy === 0) {
       return <g className="annotation-connector" />
@@ -68,7 +68,7 @@ export default class Connector extends React.Component {
                   duration: 500,
                   easing: easing
                 }}
-                delay={700}
+                delay={delay + 700}
                 from={{ ll: plength }}
                 to={{ ll: 0 }}>
                 {props => {
