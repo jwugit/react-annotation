@@ -260,7 +260,7 @@ export default class Note extends React.Component {
       delay
     } = this.props
 
-    console.log("props", this.props)
+    // console.log("props", this.props)
 
     let bgPaddingFinal = { top: 0, bottom: 0, left: 0, right: 0 }
 
