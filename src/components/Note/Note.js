@@ -453,7 +453,7 @@ Note.propTypes = {
     "dynamic"
   ]),
   editMode: PropTypes.bool,
-  lineType: PropTypes.oneOf(["vertical", "horizontal"]),
+  lineType: PropTypes.oneOf(["vertical", "horizontal", "verticalNone", "horizontalNone"]),
   color: PropTypes.string,
   titleColor: PropTypes.string,
   labelColor: PropTypes.string,
